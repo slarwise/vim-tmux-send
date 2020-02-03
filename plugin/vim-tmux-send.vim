@@ -12,6 +12,8 @@ command! SendLine :call SendLine()
 function! SendKeys(keys)
     let pane_count = str2nr(trim(system('tmux list-panes | wc -l')))
     if pane_count > 1
+        let clear_line_cmd = 'tmux send-keys -t+ C-u'
+        call system(clear_line_cmd)
         let cmd = 'tmux send-keys -t+ ' . a:keys
         call system(cmd)
     else
@@ -32,4 +34,20 @@ function! SendLine()
     let current_line = shellescape(current_line)
     let keys = current_line . ' ENTER'
     call SendKeys(keys)
+endfunction
+
+function! SendSelection(type)
+    let current_a_register = @a
+    if a:type ==# 'line'
+        execute "normal! '[V']" . '"ay'
+        let keys = @a
+        let keys = shellescape(keys)
+        call SendKeys(keys)
+    elseif a:type ==# 'char'
+        execute "normal! `[v`]" . '"ay'
+        let keys = @a
+        let keys = shellescape(keys) . ' ENTER'
+        call SendKeys(keys)
+    endif
+    let @a = current_a_register
 endfunction
