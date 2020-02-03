@@ -5,7 +5,7 @@ if exists("g:loaded_vim_tmux_send") || !exists("$TMUX")
 endif
 let g:loaded_vim_tmux_send = 1
 
-command -nargs=1 SendKeys :call Sendkeys(<args>)
+command -nargs=1 SendKeys :call SendKeys(<args>)
 command SendMakeCmd :call SendMakeCmd()
 
 " function! TmuxNextPaneExists()
