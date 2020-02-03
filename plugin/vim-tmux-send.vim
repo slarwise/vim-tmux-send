@@ -51,6 +51,8 @@ function! SendKeys(keys)
 endfunction
 
 function! SendMakeCmd()
-    let keys = &makeprg . ' ENTER '
+    let make_list = split(&makeprg)
+    let make_cmd = map(make_list, 'expand(v:val)')
+    let keys = make_cmd . ' ENTER'
     call SendKeys(keys)
 endfunction
