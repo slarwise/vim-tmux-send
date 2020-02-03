@@ -5,8 +5,8 @@ if exists("g:loaded_vim_tmux_send") || !exists("$TMUX")
 endif
 let g:loaded_vim_tmux_send = 1
 
-command -nargs=1 TmuxClearLineAndSendKeysNextPane
-            \ :call TmuxClearLineAndSendKeysNextPane(<args>)
+" command -nargs=1 TmuxClearLineAndSendKeysNextPane
+"             \ :call TmuxClearLineAndSendKeysNextPane(<args>)
 command SendMakeCmd :call SendMakeCmd()
 
 " function! TmuxNextPaneExists()
@@ -48,9 +48,10 @@ function! SendKeys(keys)
         call system(cmd)
     else
         echohl WarningMsg | echo 'No other tmux pane exists' | echohl None
+    endif
 endfunction
 
 function! SendMakeCmd()
     let keys = &makeprg . ' ENTER '
-    SendKeys(keys)
+    call SendKeys(keys)
 endfunction
