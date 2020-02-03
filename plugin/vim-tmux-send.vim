@@ -52,6 +52,7 @@ function! SendKeys(keys)
 endfunction
 
 function! SendMakeCmd()
-    let keys = shellescape(&makeprg) . ' ENTER '
+    let make_cmd = split(&makeprg, '\ ', ' SPACE ', 'g')
+    let keys = make_cmd . ' ENTER '
     call SendKeys(keys)
 endfunction
