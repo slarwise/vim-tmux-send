@@ -53,8 +53,7 @@ endfunction
 function! SendMakeCmd()
     let make_list = split(&makeprg)
     let make_cmd = map(make_list, 'expand(v:val)')
-    let make_cmd = join(make_cmd)
-    echo make_cmd
+    let make_cmd = join(make_cmd, ' SPACE ')
     let keys = make_cmd . ' ENTER'
     call SendKeys(keys)
 endfunction
