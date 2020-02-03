@@ -5,8 +5,7 @@ if exists("g:loaded_vim_tmux_send") || !exists("$TMUX")
 endif
 let g:loaded_vim_tmux_send = 1
 
-" command -nargs=1 TmuxClearLineAndSendKeysNextPane
-"             \ :call TmuxClearLineAndSendKeysNextPane(<args>)
+command -nargs=1 SendKeys :call Sendkeys(<args>)
 command SendMakeCmd :call SendMakeCmd()
 
 " function! TmuxNextPaneExists()
@@ -52,7 +51,6 @@ function! SendKeys(keys)
 endfunction
 
 function! SendMakeCmd()
-    let make_cmd = split(&makeprg, '\ ', ' SPACE ', 'g')
-    let keys = make_cmd . ' ENTER '
+    let keys = &makeprg . ' ENTER '
     call SendKeys(keys)
 endfunction
