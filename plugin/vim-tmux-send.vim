@@ -29,7 +29,7 @@ endfunction
 
 function! SendLine()
     let current_line = getline('.')
-    let current_line = substitute(current_line, ' ', ' SPACE ', 'g')
+    let current_line = shellescape(current_line)
     let keys = current_line . ' ENTER'
     call SendKeys(keys)
 endfunction
