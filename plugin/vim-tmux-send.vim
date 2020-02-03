@@ -8,6 +8,8 @@ let g:loaded_vim_tmux_send = 1
 command! -nargs=1 SendKeys :call SendKeys(<args>)
 command! SendMakeCmd :call SendMakeCmd()
 command! SendLine :call SendLine()
+command! SendSelection :execute "set operatorfunc=SendSelection" |
+            \ execute "normal g@"
 
 function! SendKeys(keys)
     let pane_count = str2nr(trim(system('tmux list-panes | wc -l')))
