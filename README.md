@@ -46,10 +46,14 @@ vim-tmux-send does not come with any mappings but here is an example.
 - `nnoremap <LEADER>s :set operatorfunc=SendSelection<CR>g@`
 
 The last mapping takes a motion and sends the corresponding text. See `:h g@`
-and `:h operatorfunc` for more information on how this works.
+and `:h operatorfunc` for more information on how this works. With the above
+mapping, pressing `<LEADER>sj` sends the current line and the line below,
+`<LEADER>sap` sends the current paragraph and `<LEADER>siw` sends the current
+word. Just use your regular vim motions.
 
 ## Improvements
 
 Right now the tmux pane that the text is sent to is hard coded to be the next
 pane, and if there is only one pane open an error message is given. A variable
-for setting which pane to send to could be good.
+for setting which pane to send to could be good. Visually selecting text and
+sending is not supported at the moment, that shouldn't be too hard to implement.
